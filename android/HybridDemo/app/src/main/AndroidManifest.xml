@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".WebViewActivity" />
+        <activity android:name=".JSRuntimeActivity" />
     </application>
 
 </manifest>

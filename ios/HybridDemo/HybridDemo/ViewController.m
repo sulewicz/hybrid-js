@@ -4,6 +4,7 @@
 @interface ViewController ()
 
 - (IBAction)onWebViewDemoClicked:(id)sender;
+- (IBAction)onJSRuntimeDemoClicked:(id)sender;
 
 @end
 
@@ -21,6 +22,10 @@
 
 - (IBAction)onWebViewDemoClicked:(id)sender {
     [self performSegueWithIdentifier:@"webViewController" sender:nil];
+}
+
+- (IBAction)onJSRuntimeDemoClicked:(id)sender {
+    [self performSegueWithIdentifier:@"runtimeViewController" sender:nil];
 }
 
 #pragma mark - Navigation

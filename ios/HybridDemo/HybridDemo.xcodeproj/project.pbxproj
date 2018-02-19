@@ -19,6 +19,8 @@
 		AC9B5E6B203A975F00644323 /* second.html in Resources */ = {isa = PBXBuildFile; fileRef = AC9B5E68203A975E00644323 /* second.html */; };
 		AC9B5E6C203A975F00644323 /* main.css in Resources */ = {isa = PBXBuildFile; fileRef = AC9B5E69203A975E00644323 /* main.css */; };
 		AC9B5E6F203B5ADC00644323 /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = AC9B5E6E203B5ADC00644323 /* jquery.js */; };
+		AC9B5E72203B898300644323 /* JSRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9B5E71203B898300644323 /* JSRuntimeViewController.m */; };
+		AC9B5E74203B8ACB00644323 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9B5E73203B8ACB00644323 /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,9 @@
 		AC9B5E68203A975E00644323 /* second.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = second.html; path = ../../common/second.html; sourceTree = "<group>"; };
 		AC9B5E69203A975E00644323 /* main.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = main.css; path = ../../common/main.css; sourceTree = "<group>"; };
 		AC9B5E6E203B5ADC00644323 /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.js; path = ../../common/jquery.js; sourceTree = "<group>"; };
+		AC9B5E70203B898300644323 /* JSRuntimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSRuntimeViewController.h; sourceTree = "<group>"; };
+		AC9B5E71203B898300644323 /* JSRuntimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSRuntimeViewController.m; sourceTree = "<group>"; };
+		AC9B5E73203B8ACB00644323 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC9B5E74203B8ACB00644323 /* JavaScriptCore.framework in Frameworks */,
 				AC9B5E66203A91B000644323 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +84,8 @@
 				AC9B5E4C203A731700644323 /* AppDelegate.m */,
 				AC9B5E54203A731700644323 /* Assets.xcassets */,
 				AC9B5E59203A731700644323 /* Info.plist */,
+				AC9B5E70203B898300644323 /* JSRuntimeViewController.h */,
+				AC9B5E71203B898300644323 /* JSRuntimeViewController.m */,
 				AC9B5E56203A731700644323 /* LaunchScreen.storyboard */,
 				AC9B5E5A203A731700644323 /* main.m */,
 				AC9B5E51203A731700644323 /* Main.storyboard */,
@@ -92,6 +100,7 @@
 		AC9B5E64203A91B000644323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC9B5E73203B8ACB00644323 /* JavaScriptCore.framework */,
 				AC9B5E65203A91B000644323 /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -187,6 +196,7 @@
 				AC9B5E5B203A731700644323 /* main.m in Sources */,
 				AC9B5E4D203A731700644323 /* AppDelegate.m in Sources */,
 				AC9B5E63203A87FE00644323 /* WebViewController.m in Sources */,
+				AC9B5E72203B898300644323 /* JSRuntimeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

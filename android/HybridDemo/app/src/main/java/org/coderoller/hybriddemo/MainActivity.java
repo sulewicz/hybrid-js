@@ -14,16 +14,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.webview_demo_button).setOnClickListener(mListener);
+        findViewById(R.id.runtime_demo_button).setOnClickListener(mListener);
     }
 
     private final View.OnClickListener mListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.webview_demo_button:
+                case R.id.webview_demo_button: {
                     Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
                     intent.putExtra(WebViewActivity.PARAM_URL, "file:///android_asset/main.html");
                     startActivity(intent);
+                }
+                    break;
+                case R.id.runtime_demo_button: {
+                    Intent intent = new Intent(MainActivity.this, JSRuntimeActivity.class);
+                    startActivity(intent);
+                }
                     break;
             }
         }

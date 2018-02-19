@@ -1,0 +1,20 @@
+body {
+    background-color: #000;
+    font-family: Verdana;
+    min-height: 100%;
+    color: white;
+    text-align: center;
+    padding: 32px;
+    font-size: 34px;
+}
+
+a {
+    border: none;
+    outline: none;
+    color: #eee;
+    padding: 15px;
+}
+
+#links a {
+    display: block;
+}

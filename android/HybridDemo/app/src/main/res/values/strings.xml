@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HybridDemo</string>
+    <string name="webview_demo">WebView Demo</string>
 </resources>

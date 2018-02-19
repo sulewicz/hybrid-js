@@ -14,6 +14,29 @@
         <a href="webview://second.html">New Activity</a>
         <a href="alert://Oh my!">Alert!</a>
     </div>
+    <div id="form">
+        <input id="msg" type="text" value="Sample!" /><br>
+        <input id="alert" type="button" value="Show Alert" />
+    </div>
 </body>
+
+<script src="jquery.js"></script>
+
+<script type="text/javascript">
+    function globalCallback() {
+        console.log("globalCallback called!");
+    }
+
+    $(document).ready(function() {
+        NativeApi = window.NativeApi || {
+            alert: function(msg) {
+                alert(msg);
+            }
+        };
+        $("#alert").click(function() {
+            NativeApi.alert($("#msg").val(), "globalCallback");
+        });
+    });
+</script>
 
 </html>

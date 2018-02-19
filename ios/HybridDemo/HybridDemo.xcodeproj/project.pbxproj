@@ -18,6 +18,7 @@
 		AC9B5E6A203A975F00644323 /* main.html in Resources */ = {isa = PBXBuildFile; fileRef = AC9B5E67203A975E00644323 /* main.html */; };
 		AC9B5E6B203A975F00644323 /* second.html in Resources */ = {isa = PBXBuildFile; fileRef = AC9B5E68203A975E00644323 /* second.html */; };
 		AC9B5E6C203A975F00644323 /* main.css in Resources */ = {isa = PBXBuildFile; fileRef = AC9B5E69203A975E00644323 /* main.css */; };
+		AC9B5E6F203B5ADC00644323 /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = AC9B5E6E203B5ADC00644323 /* jquery.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		AC9B5E67203A975E00644323 /* main.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = main.html; path = ../../common/main.html; sourceTree = "<group>"; };
 		AC9B5E68203A975E00644323 /* second.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = second.html; path = ../../common/second.html; sourceTree = "<group>"; };
 		AC9B5E69203A975E00644323 /* main.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = main.css; path = ../../common/main.css; sourceTree = "<group>"; };
+		AC9B5E6E203B5ADC00644323 /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = jquery.js; path = ../../common/jquery.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +100,10 @@
 		AC9B5E6D203A976B00644323 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AC9B5E6E203B5ADC00644323 /* jquery.js */,
 				AC9B5E69203A975E00644323 /* main.css */,
-				AC9B5E68203A975E00644323 /* second.html */,
 				AC9B5E67203A975E00644323 /* main.html */,
+				AC9B5E68203A975E00644323 /* second.html */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				AC9B5E6C203A975F00644323 /* main.css in Resources */,
 				AC9B5E58203A731700644323 /* LaunchScreen.storyboard in Resources */,
 				AC9B5E55203A731700644323 /* Assets.xcassets in Resources */,
+				AC9B5E6F203B5ADC00644323 /* jquery.js in Resources */,
 				AC9B5E53203A731700644323 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

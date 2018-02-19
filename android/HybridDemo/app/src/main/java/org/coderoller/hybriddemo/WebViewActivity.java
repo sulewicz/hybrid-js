@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -22,9 +23,31 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_webview);
         mWebView = findViewById(R.id.webview);
         mWebView.setWebViewClient(mWebViewClient);
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.addJavascriptInterface(new NativeApi(), "NativeApi");
         final String url = getIntent().getStringExtra(PARAM_URL);
         if (url != null) {
             mWebView.loadUrl(url);
+        }
+    }
+
+    class NativeApi {
+        @JavascriptInterface
+        public void alert(String message) {
+            Toast.makeText(WebViewActivity.this, message, Toast.LENGTH_SHORT).show();
+        }
+
+        @JavascriptInterface
+        public void alert(String message, final String callback) {
+            alert(message);
+            if (callback != null) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mWebView.loadUrl("javascript:" + callback + "()");
+                    }
+                });
+            }
         }
     }
 
@@ -53,6 +76,12 @@ public class WebViewActivity extends AppCompatActivity {
                 return true;
             }
             return super.shouldOverrideUrlLoading(view, url);
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
+            Toast.makeText(view.getContext(), "Oh no! " + description, Toast.LENGTH_SHORT).show();
         }
     }
 }

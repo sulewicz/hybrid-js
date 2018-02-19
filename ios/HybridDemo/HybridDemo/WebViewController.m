@@ -4,7 +4,18 @@
 static NSString * const kWebViewScheme = @"webview://";
 static NSString * const kAlertScheme = @"alert://";
 
-@interface WebViewController () <WKUIDelegate, WKNavigationDelegate>
+static NSString * const kNativeApi = @"NativeApi = { \
+    alert: function(message, callback) { \
+        alert(message); \
+        window.webkit.messageHandlers.alert.postMessage({ \"message\": message, \"callback\": callback }); \
+    } \
+}; \
+console.log = function(message) { \
+    window.webkit.messageHandlers.log.postMessage({ \"message\": message }); \
+} \
+";
+
+@interface WebViewController () <WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler>
 
 @property (nonatomic) WKWebView *webView;
 
@@ -21,6 +32,17 @@ static NSString * const kAlertScheme = @"alert://";
     self.navigationItem.leftBarButtonItem = newBackButton;
     
     WKWebViewConfiguration *webConfiguration = [[WKWebViewConfiguration alloc] init];
+    WKUserContentController *userController = [[WKUserContentController alloc] init];
+    
+    WKUserScript* userScript = [[WKUserScript alloc] initWithSource:kNativeApi
+                                                    injectionTime:WKUserScriptInjectionTimeAtDocumentEnd
+                                                 forMainFrameOnly:NO];
+    
+    [userController addUserScript:userScript];
+    [userController addScriptMessageHandler:self name:@"alert"];
+    [userController addScriptMessageHandler:self name:@"log"];
+    
+    webConfiguration.userContentController = userController;
     
     self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:webConfiguration];
     self.webView.UIDelegate = self;
@@ -47,12 +69,27 @@ static NSString * const kAlertScheme = @"alert://";
         decisionHandler(WKNavigationActionPolicyCancel);
     } else if ([url hasPrefix:kAlertScheme]) {
         NSString *message = [[url substringFromIndex:kAlertScheme.length] stringByRemovingPercentEncoding];
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert" message:message preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil]];
-        [self presentViewController:alertController animated:YES completion:nil];
+        [self showAlert:message];
         decisionHandler(WKNavigationActionPolicyCancel);
     } else {
         decisionHandler(WKNavigationActionPolicyAllow);
+    }
+}
+
+- (void)showAlert:(NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Alert" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    if ([message.name isEqualToString:@"alert"]) {
+        NSDictionary *body = message.body;
+        [self showAlert:body[@"message"]];
+        [self.webView evaluateJavaScript:[body[@"callback"] stringByAppendingString:@"();"] completionHandler:nil];
+    } else if ([message.name isEqualToString:@"log"]) {
+        NSDictionary *body = message.body;
+        NSLog(@"console.log(): %@", body[@"message"]);
     }
 }
 
